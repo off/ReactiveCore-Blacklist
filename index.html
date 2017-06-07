@@ -1,0 +1,314 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>ReactiveCore Blacklist Checker</title>
+<meta charset="utf-8">
+<meta https-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script>
+			function isInArray(value, array) {
+				return array.indexOf(value) > -1;
+			}
+		   var blUsers = [
+				 //Blacklisted User Array
+				//Format {name: "somename", uuid: "someuuid",  reason: "reason"},
+				{name: "esythara", uuid:"6c02dada-7d77-4f37-85d5-13ff490a60c1",  reason: "Traitor"},
+				{name: "bunnyqueen28", uuid: "20be03aa-51cb-4f23-9fc4-6ac96b5f9b69",  reason: "Traitor"},
+				{name: "senpainodusmepls", uuid: "b63732ca-4a75-4afb-aae0-472db81fe982", reason: "Traitor"},
+				{name: "nauseatedfox", uuid: "eee5bbca-33e1-468c-b39d-00ec9810dfdd", reason: "N/A"},
+				{name: "dubsdoesyt", uuid: "2aae51fe-f798-4dd3-b969-faf5c16d74a2",  reason: "N/A"},
+				{name: "waggin", uuid: "42ab1e8f-9555-4edd-9162-ce326ea08c30",  reason: "N/A"},
+				{name: "kayleeafk", uuid: "0ab76503-c989-4e1f-9d2b-cb07b9cf80d2",  reason: "Hostility to entire staff team"},
+				{name: "jackmjohnson", uuid: "bd568380-cb00-41f9-b951-4e9953ba1d2d", reason: "N/A"},
+				{name: "legislate", uuid: "45717aa8-24ba-400e-929f-a2ed886b3cb4", reason: "N/A"},
+				{name: "buckhd", uuid: "c3ddba5a-9ea1-41c4-a4d8-f013b4795b9b", reason: "N/A"},
+				{name: "mrjakeman", uuid: "c73a2fe7-0c7c-4ee2-96ab-57e0d60dfe17", reason: "Traitor"},
+				{name: "spyno", uuid: "1db5807b-5ae6-4942-a36e-34650fb46c8c", reason: "Traitor"},
+				{name: "adoom", uuid: "60427294-1487-415c-986d-0ab008ab06c8", reason: "N/A"},
+				{name: "omegatheog", uuid: "d5ef157f-3ed5-4352-ac7a-700a4ce12d12", reason: "N/A"},
+				{name: "vegaslaw", uuid: "be49d221-050a-46e5-8627-449c4478a73f", reason: "N/A"},
+				{name: "wolfpack167", uuid: "d5651ce3-2816-4739-a566-dddae319c5d6", reason: "Annoyance"},
+				{name: "imjustkindle", uuid: "9c3c4c61-4e33-4bb2-b2b5-c5a16b357c71", reason: "N/A"},
+				{name: "joshhplayshd", uuid: "ee075b04-14e8-46e0-b568-8af0c3c7090a", reason: "N/A"},
+				{name: "javavirus", uuid: "3b989b32-e82d-4ac8-98f7-4c6696722755", reason: "N/A"},
+				{name: "stellurr", uuid: "2d160726-ebb5-4ba5-900b-9d3e413e7bb0", reason: "N/A"},
+				{name: "maisenpai", uuid: "7732f9a2-c213-4524-98fe-4a3e4aa273fe", reason: "Traitor"},
+				{name: "shh_its_brandon", uuid: "9f08ace2-d04f-4220-b121-3c5787105f29", reason: "Traitor"},
+				{name: "toxicate", uuid: "8e4906d4-582f-49f9-9da2-54a88fa7c61b", reason: "Traitor"},
+				{name: "freshminer", uuid: "8b593757-9708-4d7d-a1bc-df494ebe0dbd", reason: "Traitor"},
+				{name: "jodaproductions", uuid: "7517e309-f454-4630-82d4-dd98a4f13ebd", reason: "Traitor"},
+				{name: "lured", uuid: "fb637009-0ed4-49bd-8ba0-6be8e880323f", reason: "N/A"},
+				{name: "underappreciated", uuid: "07123bc8-a8e0-4ed5-9539-09cf4266780f", reason: "Hostility to the entire staff team"},
+				{name: "downloadinq", uuid: "b99d7ecf-3b81-4884-81a1-1f0aab70af61", reason: "N/A"},
+				{name: "xxsmittyxx", uuid: "e36faa8c-7ae9-4733-baa1-1c9f1426b2e6", reason: "Hostility to the entire staff team"},
+				{name: "pechu_bae", uuid: "075a5020-4865-444d-9c59-fe4b4572dbca", reason: "Hostility"},
+				{name: "pandachaotic", uuid: "33e44cb5-51f7-43e1-a697-f69707286806", reason: "Hostility"},
+				{name: "pandalillyy", uuid: "a82c068b-9a8c-4fda-81bd-268f4ac9c2ab", reason: "Hostility"},
+				{name: "itzaudro", uuid: "a93f0523-dc5d-46f5-bbb8-a8411106f0a8", reason: "Hostility"},
+				{name: "xericchaosdive", uuid: "5e28a796-ccdf-4269-8e7f-b14a464fa239", reason: "Hostility"},
+				{name: "itzthedarkprince", uuid: "e5a598a9-083b-4aa0-ba6a-d9ee02e01883", reason: "Hostility"},
+				{name: "kotf_clan", uuid: "c0fe645d-8f41-45ff-a5ab-fd24ae442937", reason: "Hostility"},
+				{name: "electric9054_", uuid: "bb32405e-fd19-48d1-9058-12d2f47851f9", reason: "Hostility"},
+				{name: "toastgfx", uuid: "538dd29f-f923-40b1-b9de-f7467e4916c7", reason: "Owning a server while being staff"},
+				{name: "64bitjava", uuid: "af9b754f-264e-40b0-8224-000496c607b9", reason: "Malicious Activity"},
+				{name: "thefireknight563", uuid: "825f0dfc-f01d-40cf-a1c7-d8b5eac18c46", reason: "Association with 64BitJava // Nick"},
+				{name: "theunwantedbox", uuid: "b791b0d1-35cc-4128-b2fd-f4016e2a209d", reason: "Association with 64BitJava // Nick"},
+				{name: "itsyaboipanda", uuid: "2ad0c4a7-0917-4c7d-8b65-06a51ba6b99b", reason: "Association with 64BitJava // Nick"},
+				{name: "wheelinq", uuid: "901cab82-27c4-44ae-bec7-4b456497fd2c", reason: "Hostility to the entire staff team"},
+				{name: "warriorking123", uuid: "f87c291c-6df5-4e34-b332-6b98b38cf5a7", reason: "Hostility to the entire staff team"},
+				{name: "maddogjjv", uuid: "4ab1323c-7e8d-464a-b1c2-9c1a0868bc54", reason: "Hostility to the entire staff team"},
+   				{name: "ihasbunnies", uuid: "1f64875e-09bf-45c6-9169-24d2eb1ed096", reason: "Hostility to the entire staff team"},
+				{name: "seronical", uuid: "173c0e33-f8a8-4e52-8714-05b3681ca4ff", reason: "Hostility to the entire staff team"},
+				{name: "buylowsellhigh", uuid: "a1bcb509-46ef-4e7a-a2fa-6eec1a8ce26e", reason: "Hostility to the entire staff team"},
+				{name: "elliegoulding", uuid: "aea65ae5-9852-47d2-8b42-8a7ebc87c106", reason: "Malicious Activity"},
+				{name: "xhackinglordtd", uuid: "3b77e576-e7a9-4bd5-bce2-ba81475f3be8", reason: "Malicious Activity"},
+				{name: "pandazander", uuid: "2c224dcb-ec53-43ee-9c15-3e757b5e3b52", reason: "Plagiarism"},
+				{name: "htmldeveloper", uuid: "523b4f43-13ae-4db8-baac-98bbe3845a73", reason: "Malicious Activity"},
+				{name: "sebleduck", uuid: "c3a20081-9ee4-4e47-a319-f9a69e3c4b20", reason: "Inactivity"},
+				{name: "eeveemaster9000", uuid: "731f79a2-447e-47c2-8045-a2011dd4d742", reason: "Inactivity"},
+				{name: "nethsa", uuid: "ae80f8c7-0091-45c3-80b1-7c6ad3d3d62b", reason: "Malicious Activity"},
+				{name: "qij", uuid: "3e6d38cf-e923-43cd-a01d-7715b1051125", reason: "Inactivity"},
+				{name: "xxomgitzbrodiexx", uuid: "f453a912-8708-4cc6-b069-0a1f4c1e1136", reason: "Lying"},
+				{name: "_horny", uuid: "1d2dfc4d-23b0-4fb7-8900-c71839f6da4a", reason: "Malicious Activity"},
+				{name: "codpro122", uuid: "079bd8fb-045f-44eb-94df-b5b21a6067f7", reason: "Lying"},
+				{name: "satisfries", uuid: "b89ec461-175a-47f9-9c9c-58207a855bd6", reason: "Impersonation"},
+				{name: "mirkar", uuid: "80a92307-5a29-4ae6-83b6-702286d5a5a5 ", reason: "Traitor"},
+				{name: "wolfiepvp", uuid: "c3d0317f-d1eb-49fd-8441-a9008e826379", reason: "Lying"},
+				{name: "whiteshadow3713", uuid: "fb46ad0d-8c5c-4279-a9ac-2a5581716d13", reason: "Harassment"},
+				{name: "xswaggx", uuid: "59ad0ea5-d4fc-49b8-9e9d-2d1de27ec44b", reason: "Harassment"},
+				{name: "trendnet", uuid: "5e7bdf43-7035-4a98-9f31-9c3c27052f62", reason: "Inactivity"},
+				{name: "sunwu", uuid: "102f99a0-1936-4b16-b92a-3020ba3315f0", reason: "Abuse (LotusPvP)"},
+				{name: "germab1tch", uuid: "9c809bbc-3856-4ae1-936f-6e8fd224679d", reason: "Abuse (LotusPvP)"},
+				{name: "v94", uuid: "d9dd204f-2bec-4430-a6a0-55c85c5eb2c7", reason: "Lying"},
+				{name: "yumy", uuid: "e35716a2-19f4-4304-815d-e83214ab0fb5", reason: "Lying"},
+				{name: "xsaby", uuid: "65122754-4059-465c-987b-ba3bf22dfb7a", reason: "Plagiarism"},
+				{name: "festay", uuid: "3c7861ae-3585-4d58-83d8-e9b58a8b94dd", reason: "Lying"},
+				{name: "comay", uuid: "e196e499-5dd9-443d-b7c6-29ddd32447fa", reason: "Traitor"},
+				{name: "razeamp", uuid: "c7d0167f-2c2a-4941-863b-e95adaebbdce", reason: "DDoS Threats"},
+				{name: "domin8a", uuid: "8310b24d-107c-4d4d-af6b-5f3f9496eb95", reason: "Hostility to the entire staff team"},
+				{name: "nerdymudkip", uuid: "0ac654e9-9b15-4c6a-93a3-3392336ec8d5", reason: "Traitor"},
+				{name: "xxwafflezpvpxx", uuid: "b853cb24-8610-4489-a0d7-c88fc093bd80", reason: "N/A"},
+				{name: "gestural", uuid: "6abad025-9dab-4b22-9815-32ae91cefc02", reason: "N/A"},
+				{name: "fishlines", uuid: "610cb13e-bff2-4ec6-a809-72fbaff90736", reason: "Abuse (MineSuperior)"},
+				{name: "statisticss", uuid: "312144b8-65b4-4dec-9a32-debfdbfa1518", reason: "Abuse (MineSuperior)"},
+				{name: "whitecoke", uuid: "8eeaecba-3c77-433c-a387-29697cac082a", reason: "Harassment / Toxicity"},
+				{name: "hivemaso", uuid: "7ccd806f-ea25-4cbd-942f-6f40dd368885", reason: "Malicious Activity"}
+			];
+			
+			var staffUsers = [
+				{name: "titanicfreak", uuid: "7f11f1e8-d884-4711-9a01-e48c01d8ea71",  rank: "Owner"},
+				{name: "epicgamer133", uuid: "63000f45-9e83-4686-bc62-e90a1e620ef0",  rank: "Owner"},
+				{name: "puzzling", uuid: "3d3f34ee-9803-430e-bf01-a6299bb11c2e",  rank: "Owner"},
+				{name: "creationz", uuid: "2fe40a0e-ba67-463c-b167-a8d0f6f83bac",  rank: "Manager"},
+				{name: "dystopia", uuid: "e942cf23-ac5e-4842-add0-72fb1ac89d88",  rank: "Manager"},
+				{name: "nuxxy", uuid: "bd804851-bf85-4b19-bada-51e4c6f5f357",  rank: "Manager"},
+				{name: "parasd", uuid: "e44f2550-79a5-44e9-a220-d2556658baa0",  rank: "Manager"},
+				{name: "radicalcaptain", uuid: "d54c5f9f-0b7d-4f50-b7cd-eb35d76d6cac",  rank: "Manager"},
+				{name: "evadez", uuid: "68cc2858-a130-4805-bfc9-c108095529e5",  rank: "Dev"},
+				{name: "amplexus", uuid: "fdfd26cc-d385-49b7-96b7-d6f83bef5415",  rank: "Builder"},
+				{name: "mbr5000", uuid: "ca7e244d-79fe-4222-8fac-c86754d0ffa1",  rank: "Builder"},
+				{name: "miathegirl", uuid: "29406b56-83f5-43c0-90b4-e08f99e763e1",  rank: "Head-Admin"},
+				{name: "nuikoguma", uuid: "2594590b-3bdd-4f21-91e9-2a0cd8b7b50b",  rank: "Head-Admin"},
+				{name: "satisfies", uuid: "330a9e90-e126-4ad4-85a1-37b1688a11c2",  rank: "Head-Admin"},
+				{name: "chanele", uuid: "772910a0-1118-4de7-912f-9c0da650742b",  rank: "Admin"},
+				{name: "glenjendary", uuid: "e06c919d-712b-408a-8fff-3bd16512ee12",  rank: "Admin"},
+				{name: "mandiethepanda", uuid: "a08a5902-110e-4de2-985b-ff266dcd6a53",  rank: "Admin"},
+				{name: "rexo", uuid: "27b39e1c-5d18-4d14-81c9-a3f3d38f8ed3",  rank: "Admin"},
+				{name: "xlockinq", uuid: "3bdc104a-8d59-4841-b07f-c377071243e5",  rank: "Admin"},
+				{name: "derpiner", uuid: "6d40df35-ffa1-472d-9be1-d5c4b272ca52",  rank: "Helper"},
+				{name: "shaness12345", uuid: "bd799f09-8689-4f5f-8c2f-dac8ced36712",  rank: "Helper"},
+				{name: "bengeorgia", uuid: "aedaf352-ca48-40c7-a5a1-a4b22ee66b01",  rank: "Helper"},
+				{name: "poonda", uuid: "a607f689-0a2c-4cbd-806c-7b393fa12049",  rank: "Helper"},
+				{name: "lubed", uuid: "a4d3919a-c0bc-4cfb-9bf8-c1b9960596df",  rank: "Helper"},
+				{name: "ohmsjoshuadun", uuid: "d95270ef-f978-4295-8199-980c1e206290",  rank: "Helper"},
+				{name: "geographical", uuid: "66d3e070-1900-446a-b22d-06c0e9abd0f5",  rank: "Helper"},
+				{name: "zeekey", uuid: "a13b259f-5c02-4f3e-9440-a436763d150c",  rank: "Helper"},
+				{name: "playaway1", uuid: "4656f8e9-5e73-48d3-be71-4db9752a64dd",  rank: "Helper"},
+				{name: "motionblurr", uuid: "1f6d5258-ed26-4f85-9c5e-09f25ce6d5bc",  rank: "Helper"},
+				{name: "d1c", uuid: "053a661a-5d13-49ab-992d-1833100e8d8e",  rank: "Helper"},
+				{name: "moonlight_pixels", uuid: "78e4b9ec-20ff-4a57-91db-7ed5700b1671",  rank: "Helper"},
+				{name: "legitlyfired", uuid: "fc7717e3-ea88-420b-b4b7-049fe69ac897", rank: "Mod"},
+				{name: "theawsomegamer04", uuid: "5dd92bb1-bb9c-4426-9605-bbfd8960a04f", rank: "Mod"},
+				{name: "statisticss", uuid: "312144b8-65b4-4dec-9a32-debfdbfa1518", rank: "Mod"},
+				{name: "perkie", uuid: "01379958-78d3-4b11-ae3b-455d2cb2b917", rank: "Mod"},
+				{name: "littledlove", uuid: "f1a76abc-9e4e-4d9d-9c4d-8805fc8b69e0", rank: "Mod"},
+				{name: "derpylatios", uuid: "72d28195-5c7e-48d2-acfd-a88a933047cd", rank: "Mod"},
+				{name: "cookiis", uuid: "1a9dc7b8-ae93-4e13-8ade-24c22e21a263", rank: "Mod"},
+				{name: "beastfox", uuid: "7842377b-f962-412c-b8a3-ee3e6e766ec8", rank: "Mod"},
+				{name: "aimbotstrafe", uuid: "e2162753-b417-4d4b-bc3d-a84ff731ea7a", rank: "Mod"}
+			];
+			
+		
+	   	</script>
+<style>body{width:100%;margin:auto;height:100%;background:#fefefe;-webkit-box-align:center;-webkit-box-pack:center}.search{position:relative;top:150px;width:auto;display:-webkit-box;-webkit-box-pack:center;-webkit-box-align:center;margin:auto;}.s{background:white;padding:4px;min-height:40px;width:350px;border:none;border-radius:1px;box-shadow:0 0 15px #ddd;outline:none!important;margin:8px;font-size:16px;text-indent:4px;}#suuid{background:#4f80ff;color:#fafafa;padding:4px 24px;margin:8px;min-height:40px;font-size:16px;border:none;border-radius:2px;cursor:pointer;font-weight:bold;box-shadow:0 0 15px #ddd;}#suuid:hover{background:#4167cb;color:#eee;transition:all 0.3s ease-in-out;}.details{position:relative;width:100%;top:300px;height:auto;background:none;display:-webkit-box;-webkit-box-pack:center;-webkit-box-align:center;}.detailsForNow{font-weight:bold;font-size:24px;font-family:'Lato',sans-serif;max-width:700px;background:white;box-shadow:0 0 20px #ddd;margin:auto;padding:8px;position:relative;border-radius:3px;}.rimg{float:left;margin-right:4px;height:100px;}.results{float:right;margin-left:4px;}.clear{clear:both;}.footer{position:fixed;left:0;right:0;margin:auto;width:100%;height:100px;bottom:0px;box-shadow:-1px 0 5px #ddd;display:-webkit-inline-box;background:#fff;-webkit-box-pack:center;-webkit-box-align:center;}.header{position:fixed;left:0;right:0;margin:auto;width:100%;height:100px;top:0px;box-shadow:1px 0 5px #ddd;display:-webkit-box;background:#fff;-webkit-box-pack:center;-webkit-box-align:center;}#nobl,#nost,#twitter{font-size:18px;color:#222222;font-family:'Lato';min-width:200px;margin:8px;display:-webkit-box;-webkit-box-pack:center;-webkit-box-align:center;}#nobl{float:left;position:absolute;left:0;top:0;bottom:0;}#nost{float:right;right:0;top:0;bottom:0;text-align:right;position:absolute;}#twitter{right:0;left:0;top:0;bottom:0;position:absolute;text-align:center;}#link{text-decoration:none;color:#222222;font-family:Lato;font-size:20px;transition:all 0.3s ease-in-out;}#link:hover{color:#888;transition:all 0.3s ease-in-out;}#link2{text-decoration:none;color:#222222;}.status{margin-right:50%;}.status2{}</style>
+<script>
+			var users = [];
+			var staffs = [];
+			var stuuids = [];
+			var stuser, stuuid, strank;
+			var uuid = [];
+			var bluser, bluuid, blreason;
+			function searchButton() {
+				var src = $("#su").val();
+				src = src.toLowerCase();
+				if (src == "") {
+					alert("Please enter an IGN or UUID");
+				} else if( /[^a-zA-Z0-9_]/.test(src) ) {
+					alert("Please enter a valid IGN or UUID");
+				}
+					else	{
+					for(var i = 0; i < blUsers.length; i++) {
+						users.push(blUsers[i].name);
+						uuid.push(blUsers[i].uuid);
+						if ((src == blUsers[i].name) || (src == blUsers[i].uuid)) {
+							bluser = blUsers[i].name;
+							bluuid = blUsers[i].uuid;
+							blreason = blUsers[i].reason;
+						}
+					}
+					for(var i = 0; i < staffUsers.length; i++) {
+						staffs.push(staffUsers[i].name);
+						stuuids.push(staffUsers[i].uuid);
+						if ((src == staffUsers[i].name) || (src == staffUsers[i].uuid)) {
+							stuser = staffUsers[i].name;
+							stuuid = staffUsers[i].uuid;
+							strank = staffUsers[i].rank;
+						}
+					}
+					if(isInArray(src, users) || isInArray(src, uuid)) {
+						$(".detailsForNow").html(
+												"<div class='rimg'>" +
+												 	"<img src='https://cravatar.eu/helmavatar/" + bluuid + "/100.png'></img>" +
+												"</div>" +
+												"<div class='results'>" +
+													"<span style='color:#ff4f4f'<small>" + bluser + " <span style='color:#222222'>is <b>blacklisted</b>! " +
+														"</small></span></span><br>" +
+							"<span style='color:#ff4f4f'> UUID : </span><small>" + "<span style='color:#222222'>  </span>" + bluuid +
+														"</small><br>" +
+														"<span style='color:#ff4f4f'> Reason : </span>" + "<span style='color:#222222'>  </span>" + blreason +
+													"</span>" +
+												"<div>" +
+												"<div class='clear'></div>"
+												);
+					} else {
+						if(isInArray(src, staffs) || isInArray(src, stuuids)) {
+							if((src.length > 20) || (src.length == 36)) {
+								src = src.split("-").join("");
+								console.log(src);
+								$.getJSON("https://api.minetools.eu/profile/"+src, function(stresult){
+									console.log(stresult);
+									stresult = stresult;
+									$(".detailsForNow").html(
+											"<div class='rimg'>" +
+												"<img src='https://cravatar.eu/helmavatar/" + stuuid + "/100.png'></img>" +
+											"</div>" +
+											"<div class='results'>" +
+												"<span style='color:#5ae862'<small>" + stresult.decoded.profileName + "<span style='color:#222222'> is not <b>blacklisted</b>! </span>" +
+													"</small><br>" +
+													"UUID: <small> </span>" + "<span style='color:#222222'> </span>" + stuuid +
+													"</small><br>" +
+										"<span style='color:#5ae862'>Rank: </span>" + "<span style='color:#222222'> </span>" + strank +
+										
+											"<div>" +
+											"<div class='clear'></div>"
+										);
+								});
+							} else {
+								$(".detailsForNow").html(
+											"<div class='rimg'>" +
+												"<img src='https://cravatar.eu/helmavatar/" + stuuid + "/100.png'></img>" +
+											"</div>" +
+											"<div class='results'>" +
+												"<span style='color:#5ae862'<small>" + stuser + "<span style='color:#222222'> is not <b>blacklisted</b>! </span>" +
+													"</small><br>" +
+									"UUID: <small> </span>" + "<span style='color:#222222'> </span>" + stuuid +
+													"</small><br>" +
+													"<span style='color:#5ae862'> Rank: </span>" + "<span style='color:#222222'> </span>" + strank +
+												"</span></span>" +
+											"<div>" +
+											"<div class='clear'></div>"
+										);
+							}
+						} else {
+							$(".detailsForNow").html(
+								"<div class='rimg'>" +
+										"<img src='https://cravatar.eu/helmavatar/" + src + "/100.png'></img>" +
+								"</div>" +
+								"<span style='color:#5ae862'>" +  src 
+								 + "<span style='color:#222222'> is not blacklisted!</span></span>");
+						}
+					}
+				}
+}
+		</script>
+</head>
+<body>
+<div class="header">
+<script>
+				//Minesuperior Player Count
+				function getStatus() {
+					$.getJSON("https://mcapi.ca/query/play.minesuperior.com/info", function(res){
+						console.log(res);
+						if(res) {
+							if (res.status == true) {
+								$.getJSON("https://mcapi.ca/query/play.minesuperior.com/info", function(msplayers){
+									console.log(msplayers);
+									$(".status").html("<span style='color:#5ae862;font-size:28px;font-family: Lato'> <span style='color:#222222;font:18px;font-family:Lato;'> <a id='link2' href='https://www.minesuperior.com'> MS Status:</a></span> Online (" + msplayers.players.online + ")</span>");	
+								});
+							} else if (res.status == false) {
+								$(".status").html("<span style='color:#ff4f4f;font-size:28px;font-family: Lato'> <span style='color:#222222;font:18px;font-family:Lato;'><a id='link2' href='https://www.minesuperior.com'>MS Status:</a></span> Offline</span>");
+							}
+						}
+					});
+					$.getJSON("https://mcapi.ca/query/play.breakingmc.net/info", function(res){
+						console.log(res);
+						if(res) {
+							if (res.status == true) {
+								$.getJSON("https://mcapi.ca/query/play.breakingmc.net/info", function(bmcplayers){
+									console.log(bmcplayers);
+									$(".status2").html("<span style='color:#5ae862;font-size:28px;font-family: Lato'> <span style='color:#222222;font:18px;font-family:Lato;'> <a id='link2' href='https://www.breakingmc.org'>BMC Status:</a></span> Online (" + bmcplayers.players.online + ")</span>");
+								});
+							} else if (res.status == false) {
+								$(".status2").html("<span style='color:#ff4f4f;font-size:28px;font-family: Lato'> <span style='color:#222222;font:18px;font-family:Lato;'><a id='link2' href='https://www.breakingmc.org'>BMC Status:</a></span> Offline</span>");
+							}
+						}
+					});
+				}
+				getStatus();
+				setInterval(getStatus, 20000, false);
+			</script>
+<div class="status">
+</div>
+<div class="status2">
+</div>
+</div>
+<div class="search">
+<form method="get" id="searchUuid" onsubmit="searchButton(); return false">
+<div class="loading"></div>
+<input type="search" name="uuidsearch" id="su" class="s" placeholder="NOTICE: Case sensitive for usernames.">
+<button type="button" name="suuid" id="suuid" onclick="searchButton(); return false">Search!</button>
+</form>
+</div>
+<div class="details">
+<div class="detailsForNow"></div>
+</div>
+<div class="footer">
+<script>
+				$(function() {
+					$("#nobl").html("Blacklisted Users: " + blUsers.length);
+					$("#nost").html("Staff: " + staffUsers.length);
+				});
+			</script>
+<div id="nobl"></div>
+<div id="twitter">
+<a id="link" target="_blank" href="https://www.twitter.com/Glenjendary">Glenjendary</a>
+<br>
+<a id="link" target="_blank" href="https://www.twitter.com/WolfTasperen">Tasperen</a>
+</div>
+<div id="nost"></div>
+<div class="clear"></div>
+</div>
+</body>
+</html>
